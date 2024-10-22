@@ -1,38 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sara's Lecture Notes</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h1 {
-      color: #333;
-    }
-    ul {
-      list-style-type: none;
-    }
-    li {
-      margin: 10px 0;
-    }
-    a {
-      text-decoration: none;
-      color: #007BFF;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Notes</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgba(173, 216, 230, 0.6), rgba(255, 182, 193, 0.6)),
+                        url('https://www.example.com/your-background-image.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header, footer {
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .intro {
+            border: 2px solid black;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .topics {
+            margin: 20px 0;
+        }
+
+        .topics p {
+            font-size: 18px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.6); /* Transparency effect */
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+        }
+
+        .topics p a {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .motivational-quotes {
+            padding: 10px;
+            border: 2px solid black;
+            text-align: center;
+            font-style: italic;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hola! let's Explore</h1>
-  <p>Here you can find lecture notes for different topics:</p>
-  <ul>
-    <li><a href="notes/quantum computing notes.pdf">Topic 1: Introduction to Quantum Mechanics</a></li>
-    
-  </ul>
+    <div class="container">
+        <header>
+            <h1>Lecture Notes</h1>
+            <p>Owner: Sara Rahman</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <p>Myself Sara Rahman, currently studying in North South University. This page contains some of my lecture notes of the courses.<br>Email : rahman.sara1729@gmail.com<br>This lecture notes are only for viewing purpose, not available for downloading</p>
+            </div>
+
+            <div class="topics">
+                <p>Topic 1: <a href="notes/quantum computing notes.pdf">Introduction to Quantum Mechanics</a></p>
+                
+            </div>
+        </div>
+
+        <footer>
+            <div class="motivational-quotes">
+                Imagination is more important than knowledge ~ Albert Einstein
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

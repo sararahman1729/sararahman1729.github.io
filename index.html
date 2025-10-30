@@ -1,100 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture Notes</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, rgba(173, 216, 230, 0.6), rgba(255, 182, 193, 0.6)),
-                        url('https://www.example.com/your-background-image.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sara Rahman | Portfolio</title>
+  <style>
+    /* 🌌 General Page Setup */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      scroll-behavior: smooth;
+      height: 100%;
+      background: url("https://cdn.theatlantic.com/thumbor/8pFXVZJ6n7Scw5KpcWZyoAGn4Ow=/0x0:2400x1350/1200x675/media/img/mt/2019/07/space_horror/original.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    /* ✨ Glass Effect Box */
+    .glass-box {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        header, footer {
-            background-color: white;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            border-radius: 5px;
-        }
+    .glass-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 35px rgba(255, 255, 255, 0.2);
+    }
 
-        .content {
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+    /* 📜 Section Styling */
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .intro {
-            border: 2px solid black;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
 
-        .topics {
-            margin: 20px 0;
-        }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
 
-        .topics p {
-            font-size: 18px;
-            margin: 10px 0;
-            background-color: rgba(255, 255, 255, 0.6); /* Transparency effect */
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
-        }
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
 
-        .topics p a {
-            color: blue;
-            text-decoration: underline;
-        }
+    a {
+      color: #66ccff;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        .motivational-quotes {
-            padding: 10px;
-            border: 2px solid black;
-            text-align: center;
-            font-style: italic;
-            font-size: 18px;
-        }
-    </style>
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* 🔽 Navigation Arrow */
+    .scroll-down {
+      margin-top: 30px;
+      font-size: 2em;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    /* 🛰 Footer */
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    /* 🌙 Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.5em; }
+      p { font-size: 1em; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Lecture Notes</h1>
-            <p>Owner: Sara Rahman</p>
-        </header>
 
-        <div class="content">
-            <div class="intro">
-                <p>Myself Sara Rahman, currently studying in North South University. This page contains some of my lecture notes of the courses.<br>Email : rahman.sara1729@gmail.com<br>This lecture notes are only for viewing purpose, not available for downloading</p>
-            </div>
-
-            <div class="topics">
-                <p>Topic 1: <a href="notes/quantum computing notes.pdf">Introduction to Quantum Mechanics</a></p>
-                
-            </div>
-        </div>
-
-        <footer>
-            <div class="motivational-quotes">
-                Imagination is more important than knowledge ~ Albert Einstein
-            </div>
-        </footer>
+  <!-- 🏠 Home Section -->
+  <section id="home">
+    <div class="glass-box">
+      <h1>Hi, I'm <span style="color:#66ccff;">Sara Rahman</span></h1>
+      <p>
+        🎓 Computer Science Engineering Student at North South University <br>
+        💡 Passionate about Data Science, Machine Learning, and Deep Learning <br>
+        🌌 Exploring the vastness of technology — one experiment at a time.
+      </p>
+      <p>
+        📧 <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a> <br>
+        🧠 <a href="https://github.com/sararahman1729" target="_blank">GitHub</a>
+      </p>
+      <div class="scroll-down" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">⬇</div>
     </div>
+  </section>
+
+  <!-- 🚀 Projects Section -->
+  <section id="projects">
+    <div class="glass-box">
+      <h2>My Works & Projects</h2>
+      <p>Here are some of my recent academic and personal projects:</p>
+      <ul style="list-style:none; padding:0; text-align:left; margin-top:20px;">
+        <li>🧬 <strong>Bangla Speech Emotion Recognition</strong> — Deep learning with CNN-BiLSTM and feature extraction.</li>
+        <li>🧠 <strong>OmniVec2 for Audio Classification</strong> — PyTorch implementation using the BanglaSER dataset.</li>
+        <li>📊 <strong>Data Analysis Workshop</strong> — Explored how attendance and internal marks correlate with student performance.</li>
+        <li>🧾 <a href="notes/quantum computing notes.pdf" target="_blank">Quantum Computing Lecture Notes</a></li>
+      </ul>
+      <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })">⬆</div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Sara Rahman | Crafted with 🌌 curiosity
+  </footer>
+
 </body>
 </html>

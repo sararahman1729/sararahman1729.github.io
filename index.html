@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sara Rahman | Portfolio</title>
   <style>
-    /* 🌌 General Page Setup */
+    /*  General Page Setup */
     html, body {
       margin: 0;
       padding: 0;
@@ -13,11 +13,12 @@
       color: white;
       scroll-behavior: smooth;
       height: 100%;
-      background: url("https://cdn.theatlantic.com/thumbor/8pFXVZJ6n7Scw5KpcWZyoAGn4Ow=/0x0:2400x1350/1200x675/media/img/mt/2019/07/space_horror/original.jpg") no-repeat center center fixed;
+      background: url("https://images-assets.nasa.gov/image/PIA04921/PIA04921~orig.jpg") no-repeat center center fixed;
       background-size: cover;
+      background-attachment: fixed;
     }
 
-    /* ✨ Glass Effect Box */
+    /* Glass Effect Box */
     .glass-box {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(12px);
@@ -36,7 +37,7 @@
       box-shadow: 0 6px 35px rgba(255, 255, 255, 0.2);
     }
 
-    /* 📜 Section Styling */
+    /*  Section Styling */
     section {
       display: flex;
       justify-content: center;
@@ -50,20 +51,23 @@
     h1 {
       font-size: 2.5em;
       margin-bottom: 10px;
+      font-family:cursive;
     }
 
     h2 {
       font-size: 2em;
       margin-bottom: 20px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     }
 
     p {
       font-size: 1.1em;
       line-height: 1.6;
+      font-style: italic;
     }
 
     a {
-      color: #66ccff;
+      color: #dc67eb;
       text-decoration: none;
       font-weight: bold;
     }
@@ -72,7 +76,7 @@
       text-decoration: underline;
     }
 
-    /* 🔽 Navigation Arrow */
+    /*  Navigation Arrow */
     .scroll-down {
       margin-top: 30px;
       font-size: 2em;
@@ -89,9 +93,19 @@
     /* 🛰 Footer */
     footer {
       text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
-      opacity: 0.8;
+      padding: 15px;
+      font-size: 0.95em;
+      opacity: 0.85;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.05em;
+      margin-bottom: 8px;
+      color: #e0e0e0;
     }
 
     /* 🌙 Responsive */
@@ -104,40 +118,44 @@
 </head>
 <body>
 
-  <!-- 🏠 Home Section -->
+  <!--  Home Section -->
   <section id="home">
     <div class="glass-box">
-      <h1>Hi, I'm <span style="color:#66ccff;">Sara Rahman</span></h1>
+      <h1>Konnichiwa, Myself <span style="color:#cd92e8;">Sara Rahman</span></h1>
       <p>
-        🎓 Computer Science Engineering Student at North South University <br>
-        💡 Passionate about Data Science, Machine Learning, and Deep Learning <br>
-        🌌 Exploring the vastness of technology — one experiment at a time.
+        🎓 A Fresh graduate from North South University in Computer Science & Engineering <br>
+         Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science and Deep Learning <br>
+         
       </p>
       <p>
-        📧 <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a> <br>
-        🧠 <a href="https://github.com/sararahman1729" target="_blank">GitHub</a>
+         Mail ID: <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a> <br>
+         Github: <a href="https://github.com/sararahman1729" target="_blank">Projects of Sara</a>
       </p>
       <div class="scroll-down" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">⬇</div>
     </div>
   </section>
 
-  <!-- 🚀 Projects Section -->
+  <!-- Projects Section -->
   <section id="projects">
     <div class="glass-box">
       <h2>My Works & Projects</h2>
       <p>Here are some of my recent academic and personal projects:</p>
       <ul style="list-style:none; padding:0; text-align:left; margin-top:20px;">
-        <li>🧬 <strong>Bangla Speech Emotion Recognition</strong> — Deep learning with CNN-BiLSTM and feature extraction.</li>
-        <li>🧠 <strong>OmniVec2 for Audio Classification</strong> — PyTorch implementation using the BanglaSER dataset.</li>
-        <li>📊 <strong>Data Analysis Workshop</strong> — Explored how attendance and internal marks correlate with student performance.</li>
-        <li>🧾 <a href="notes/quantum computing notes.pdf" target="_blank">Quantum Computing Lecture Notes</a></li>
+        <!--
+        <li> <strong>Bangla Speech Emotion Recognition</strong> — Deep learning with CNN-BiLSTM and feature extraction.</li>
+        <li> <strong>OmniVec2 for Audio Classification</strong> — PyTorch implementation using the BanglaSER dataset.</li>
+        <li> <strong>Data Analysis Workshop</strong> — Explored how attendance and internal marks correlate with student performance.</li>
+        <li> <a href="notes/quantum computing notes.pdf" target="_blank">Quantum Computing Lecture Notes</a></li>
+      -->
       </ul>
       <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })">⬆</div>
     </div>
   </section>
 
+  <!--  Footer -->
   <footer>
-    © 2025 Sara Rahman | Crafted with 🌌 curiosity
+    <div class="quote">“Imagination is more important than knowledge.” — Albert Einstein</div>
+    © 2025 Sara Rahman | Designed with 🌌 curiosity
   </footer>
 
 </body>

@@ -57,7 +57,7 @@
     h2 {
       font-size: 2em;
       margin-bottom: 20px;
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-family: 'Rye', cursive;
     }
 
     p {
@@ -65,7 +65,9 @@
       line-height: 1.6;
       font-style: italic;
     }
-
+    li {
+  font-family: 'Poppins', sans-serif; 
+}
     a {
       color: #dc67eb;
       text-decoration: none;
@@ -90,7 +92,7 @@
       60% { transform: translateY(-5px); }
     }
 
-    /* 🛰 Footer */
+    /*  Footer */
     footer {
       text-align: center;
       padding: 15px;
@@ -100,6 +102,26 @@
       backdrop-filter: blur(6px);
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
+    
+    #projects .glass-box + .glass-box {
+  margin-top: 40px; 
+}
+
+#projects .glass-box ul li {
+  margin-bottom: 12px;
+
+}
+#projects .glass-box {
+   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  
+    
+}
+
+    .contact-info {
+  text-align: left;
+  margin-top: 20px;
+  padding-left: 15px;
+}
 
     .quote {
       font-style: italic;
@@ -127,19 +149,25 @@
          Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science and Deep Learning <br>
          
       </p>
+      <div class="contact-info">
       <p>
          Mail ID: <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a> <br>
+         Job Profile: <a href="https://www.linkedin.com/in/roronoa-sara">LinkedIn</a> <br>
          Github: <a href="https://github.com/sararahman1729" target="_blank">Projects of Sara</a>
       </p>
-      <div class="scroll-down" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">⬇</div>
+      </div>
+      
+        <p>Motto: "Carpe Diem"</p>
+      
+     <div class="scroll-down" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"> </div> 
     </div>
   </section>
 
   <!-- Projects Section -->
   <section id="projects">
     <div class="glass-box">
-      <h2>My Works & Projects</h2>
-      <p>Here are some of my recent academic and personal projects:</p>
+      <h2>Poiesis of Sara</h2>
+      <p>Here are some of my academic and personal workings</p>
       <ul style="list-style:none; padding:0; text-align:left; margin-top:20px;">
         <!--
         <li> <strong>Bangla Speech Emotion Recognition</strong> — Deep learning with CNN-BiLSTM and feature extraction.</li>
@@ -148,8 +176,17 @@
         <li> <a href="notes/quantum computing notes.pdf" target="_blank">Quantum Computing Lecture Notes</a></li>
       -->
       </ul>
-      <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })">⬆</div>
+      <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })"> </div>
     </div>
+
+    <div class="glass-box" style="margin-top:30px;">
+     <h2>Hobbies</h2>
+     <p>Here are some of my creative works </p>
+     <ul style="list-style:none; padding: 0.5;; text-align:left;margin-top:15px;">
+      <li> Art page: <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank">Artifacts</a></li>
+      <li> Poetry Page: <a href="https://allpoetry.com/Veronica-sara" target="_blank">Short Poems</a></li>
+     </ul>
+  </div>
   </section>
 
   <!--  Footer -->

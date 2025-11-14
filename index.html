@@ -1,199 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sara Rahman | Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rye&display=swap" rel="stylesheet">
+
   <style>
-    /*  General Page Setup */
-    html, body {
-      margin: 0;
-      padding: 0;
+    /* ---------- Base / Background ---------- */
+    :root{
+      --glass-bg: rgba(255,255,255,0.08);
+      --glass-border: rgba(255,255,255,0.12);
+      --accent: #cd92e8;
+      --link: #dc67eb;
+      --text: #ffffff;
+      --muted: #e0e0e0;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
       font-family: 'Poppins', sans-serif;
-      color: white;
-      scroll-behavior: smooth;
-      height: 100%;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
       background: url("https://images-assets.nasa.gov/image/PIA04921/PIA04921~orig.jpg") no-repeat center center fixed;
       background-size: cover;
-      background-attachment: fixed;
+      scroll-behavior: smooth;
     }
 
-    /* Glass Effect Box */
-    .glass-box {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      border-radius: 15px;
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
-      padding: 30px;
-      width: 80%;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ---------- Layout ---------- */
+    .wrapper {
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
     }
 
-    .glass-box:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 35px rgba(255, 255, 255, 0.2);
+    main {
+      flex:1 0 auto;
     }
 
-    /*  Section Styling */
     section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
+  padding:60px 20px;
+  display:flex;
+  flex-direction: column;   
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+}
+
+
+    
+    #home { align-items:center; min-height:100vh; }
+
+    /* ---------- Glass box ---------- */
+    .glass-box {
+      width:100%;
+      max-width:920px;
+      background: var(--glass-bg);
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(12px) saturate(120%);
+      -webkit-backdrop-filter: blur(12px) saturate(120%);
+      border-radius:14px;
+      padding:28px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.45);
+      transition: transform .25s ease, box-shadow .25s ease;
+      text-align:center; /* default centered inside box */
     }
 
+    .glass-box:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 14px 50px rgba(0,0,0,0.6);
+    }
+
+    
+    .glass-box .left {
+      text-align:left;
+    }
+
+    /* ---------- Typography ---------- */
     h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      font-family:cursive;
+      margin:8px 0 12px 0;
+      font-family: 'Rye', cursive;
+      font-size:2.6rem;
+      line-height:1;
+      color:var(--accent);
+      text-align:center;
     }
 
     h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
+      margin:0 0 12px 0;
       font-family: 'Rye', cursive;
+      font-size:1.8rem;
+      color:var(--text);
+      text-align:center;
     }
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      font-style: italic;
-    }
-    li {
-  font-family: 'Poppins', sans-serif; 
-}
-    a {
-      color: #dc67eb;
-      text-decoration: none;
-      font-weight: bold;
+    h3 {
+      margin:18px 0 8px 0;
+      font-size:1.05rem;
+      color:var(--text);
     }
 
-    a:hover {
-      text-decoration: underline;
+    p { margin:8px 0; color:var(--muted); font-style:italic; line-height:1.5; }
+
+    a { color: var(--link); text-decoration:none; font-weight:600; }
+    a:hover { text-decoration:underline; }
+
+    /* ---------- Lists & spacing ---------- */
+    ul.clean {
+      list-style:none;
+      padding-left:0;
+      margin:12px 0 0 0;
+      text-align:left;
     }
 
-    /*  Navigation Arrow */
-    .scroll-down {
-      margin-top: 30px;
-      font-size: 2em;
-      animation: bounce 2s infinite;
-      cursor: pointer;
+    ul.clean li {
+      margin-bottom:12px; 
+      line-height:1.45;
+      font-size:1rem;
+      color:var(--muted);
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
-
-    /*  Footer */
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 0.95em;
-      opacity: 0.85;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
     
-    #projects .glass-box + .glass-box {
-  margin-top: 40px; 
-}
+    .project-item + .project-item { margin-top:10px; padding-top:6px; border-top:1px dashed rgba(255,255,255,0.04); }
 
-#projects .glass-box ul li {
-  margin-bottom: 12px;
-
-}
-#projects .glass-box {
-   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-  
     
-}
-
     .contact-info {
-  text-align: left;
-  margin-top: 20px;
-  padding-left: 15px;
-}
-
-    .quote {
-      font-style: italic;
-      font-size: 1.05em;
-      margin-bottom: 8px;
-      color: #e0e0e0;
+      text-align:left;
+      margin-top:16px;
+      padding-left:8px;
+      color:var(--muted);
     }
 
-    /* 🌙 Responsive */
-    @media (max-width: 768px) {
-      h1 { font-size: 2em; }
-      h2 { font-size: 1.5em; }
-      p { font-size: 1em; }
+    .contact-info a { color:var(--link); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      flex-shrink:0;
+      text-align:center;
+      padding:18px 10px;
+      font-size:0.95rem;
+      background: linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.18));
+      border-top:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);
     }
+
+    .quote { font-style:italic; margin-bottom:6px; color:#e7e7e7; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:900px){
+      .glass-box { padding:20px; max-width:720px; }
+      h1 { font-size:2.1rem; }
+      h2 { font-size:1.5rem; }
+      section { padding:40px 16px; }
+    }
+
+    @media (max-width:520px){
+      h1 { font-size:1.8rem; }
+      .glass-box { padding:16px; }
+      ul.clean li { font-size:0.95rem; }
+    }
+
   </style>
 </head>
 <body>
+  <div class="wrapper">
+    <main>
 
-  <!--  Home Section -->
-  <section id="home">
-    <div class="glass-box">
-      <h1>Konnichiwa, Myself <span style="color:#cd92e8;">Sara Rahman</span></h1>
-      <p>
-        🎓 A Fresh graduate from North South University in Computer Science & Engineering <br>
-         Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science and Deep Learning <br>
-         
-      </p>
-      <div class="contact-info">
-      <p>
-         Mail ID: <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a> <br>
-         Job Profile: <a href="https://www.linkedin.com/in/roronoa-sara">LinkedIn</a> <br>
-         Github: <a href="https://github.com/sararahman1729" target="_blank">Projects of Sara</a>
-      </p>
-      </div>
-      
-        <p>Motto: "Carpe Diem"</p>
-      
-     <div class="scroll-down" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"> </div> 
-    </div>
-  </section>
+      <!-- HOME -->
+      <section id="home">
+        <div class="glass-box">
+          <h1>Konnichiwa ~ Sara Rahman</h1>
+          <p>🎓 Fresh graduate from North South University in Computer Science & Engineering.
+             <br>Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science & Deep Learning.</p>
 
-  <!-- Projects Section -->
-  <section id="projects">
-    <div class="glass-box">
-      <h2>Poiesis of Sara</h2>
-      <p>Here are some of my academic and personal workings</p>
-      <ul style="list-style:none; padding:0; text-align:left; margin-top:20px;">
-        <!--
-        <li> <strong>Bangla Speech Emotion Recognition</strong> — Deep learning with CNN-BiLSTM and feature extraction.</li>
-        <li> <strong>OmniVec2 for Audio Classification</strong> — PyTorch implementation using the BanglaSER dataset.</li>
-        <li> <strong>Data Analysis Workshop</strong> — Explored how attendance and internal marks correlate with student performance.</li>
-        <li> <a href="notes/quantum computing notes.pdf" target="_blank">Quantum Computing Lecture Notes</a></li>
-      -->
-      </ul>
-      <div class="scroll-down" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' })"> </div>
-    </div>
+          <div class="contact-info left">
+            <p><strong>Mail:</strong> <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/roronoa-sara" target="_blank" rel="noopener">Profile</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/sararahman1729" target="_blank" rel="noopener">Projects of Sara</a></p>
+          </div>
 
-    <div class="glass-box" style="margin-top:30px;">
-     <h2>Hobbies</h2>
-     <p>Here are some of my creative works </p>
-     <ul style="list-style:none; padding: 0.5;; text-align:left;margin-top:15px;">
-      <li> Art page: <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank">Artifacts</a></li>
-      <li> Poetry Page: <a href="https://allpoetry.com/Veronica-sara" target="_blank">Short Poems</a></li>
-     </ul>
+          <p style="margin-top:14px;"><strong>Motto:</strong> "Carpe Diem"</p>
+        </div>
+      </section>
+
+      <section id="projects">
+  <div class="glass-box">
+    <h2>Poiesis of Sara</h2>
+    <p>Selected academic and personal projects, course work and creative builds.</p>
+
+    <ul class="clean">
+      <li><strong>Bangla Programming Language:</strong> A compiler-based tool to teach coding fundamentals in Bengali.</li>
+      <li><strong>Library Management Project:</strong> C-based system for inventory and loans/returns.</li>
+      <li><strong>Medical Service Provider:</strong> JavaScript web app for healthcare workflows (course project).</li>
+      <li><strong>CGPA Calculator:</strong> Java application following NSU grading policy.</li>
+      <li><strong>Crunchyroll-inspired site:</strong> Anime-themed UI & frontend implementation.</li>
+      <li><strong>Mental Health Prediction Web App:</strong> Frontend for ML-powered mental health prediction.</li>
+    </ul>
+
+    <h3 style="margin-top:30px;">AI Research Projects</h3>
+
+    <ul class="clean">
+      <li><strong>Suicidal Ideation Prediction </strong><br>
+      Comparative study of ML models to predict suicidal ideation using the dataset of MDD patients.<br>
+      Models: Logistic Regression, Decision Tree, Random Forest, AdaBoost, KNN, XGBoost.<br>
+      Tools: NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, MLxtend, XGBoost, SciPy.
+      </li>
+
+      <li style="margin-top:15px;"><strong>Custom Loss Function (Knowledge Distillation)</strong><br>
+      Designed a custom KD loss combining cross-entropy and confidence penalty.<br> Tested on CIFAR-100, Tiny ImageNet, CUB-200.<br>
+      Student Models: ShuffleNetV1, ResNet-18/34/50, EfficientNet-B0.<br>
+      Teacher Models: VGG13-BN, ResNet50, DeepLabV3+ResNet101, EfficientNet-B0/B3.<br>
+      Tools: NumPy, Matplotlib, Seaborn, Scikit-learn, PyTorch, torchvision. <br>Optimizers: Adam, AdamW, SGD+Momentum.
+      </li>
+
+      <li style="margin-top:15px;"><strong>Bangla Speech Audio Classification</strong><br>
+      Hybrid audio classification models with hyperparameter optimization (Random, Grid, Bayesian).<br>
+      Models: CNN, Bi-LSTM, YAMNet, SVM, wav2vec2.<br>
+      Tools: NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, librosa, TensorFlow, joblib. <br>Optimizers: Adam, SGD+Momentum.
+      </li>
+    </ul>
   </div>
-  </section>
 
-  <!--  Footer -->
-  <footer>
-    <div class="quote">“Imagination is more important than knowledge.” — Albert Einstein</div>
-    © 2025 Sara Rahman | Designed with 🌌 curiosity
-  </footer>
+  <!-- Hobbies box -->
+  <div class="glass-box">
+    <h2>Hobbies</h2>
+    <p>Some of my creative works</p>
+    <ul class="clean">
+      <li><strong>Art Page:</strong> <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank">Artifacts</a></li>
+      <li><strong>Poetry Page:</strong> <a href="https://allpoetry.com/Veronica-sara" target="_blank">Short Poems</a></li>
+    </ul>
+  </div>
+</section>
 
+
+    </main>
+
+    <footer>
+      <div class="quote">“Be alone, that is the secret of invention; be alone, that is when ideas are born” ~ Nikola Tesla</div>
+      © 2025 Sara Rahman
+    </footer>
+  </div>
 </body>
 </html>

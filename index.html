@@ -3,247 +3,861 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sara Rahman | Portfolio</title>
+  <title>Sara Rahman — Portfolio</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rye&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- Base / Background ---------- */
-    :root{
-      --glass-bg: rgba(255,255,255,0.08);
-      --glass-border: rgba(255,255,255,0.12);
-      --accent: #cd92e8;
-      --link: #dc67eb;
-      --text: #ffffff;
-      --muted: #e0e0e0;
+    /* ─── Variables ─────────────────────────────────── */
+    :root {
+      --bg:        #06070d;
+      --surface:   #0d0f1a;
+      --border:    rgba(255,255,255,0.07);
+      --accent:    #a78bfa;
+      --accent2:   #67e8f9;
+      --dim:       #8892a4;
+      --text:      #e8eaf0;
+      --white:     #ffffff;
+      --serif:     'DM Serif Display', serif;
+      --mono:      'DM Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
     }
 
-    html,body{
-      height:100%;
-      margin:0;
-      padding:0;
-      font-family: 'Poppins', sans-serif;
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      background: url("https://images-assets.nasa.gov/image/PIA04921/PIA04921~orig.jpg") no-repeat center center fixed;
-      background-size: cover;
-      scroll-behavior: smooth;
+    /* ─── Reset & Base ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ---------- Layout ---------- */
-    .wrapper {
-      min-height:100%;
-      display:flex;
-      flex-direction:column;
+    /* ─── Starfield canvas ──────────────────────────── */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
     }
 
-    main {
-      flex:1 0 auto;
+    /* ─── Noise overlay ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 256px;
+      opacity: 0.4;
     }
 
-    section {
-  padding:60px 20px;
-  display:flex;
-  flex-direction: column;   
-  justify-content:center;
-  align-items:center;
-  gap:30px;
-}
+    /* ─── Layout ────────────────────────────────────── */
+    .page { position: relative; z-index: 2; }
 
-
-    
-    #home { align-items:center; min-height:100vh; }
-
-    /* ---------- Glass box ---------- */
-    .glass-box {
-      width:100%;
-      max-width:920px;
-      background: var(--glass-bg);
-      border:1px solid var(--glass-border);
-      backdrop-filter: blur(12px) saturate(120%);
-      -webkit-backdrop-filter: blur(12px) saturate(120%);
-      border-radius:14px;
-      padding:28px;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.45);
-      transition: transform .25s ease, box-shadow .25s ease;
-      text-align:center; /* default centered inside box */
+    /* ─── Nav ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(6,7,13,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .glass-box:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 14px 50px rgba(0,0,0,0.6);
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
     }
 
-    
-    .glass-box .left {
-      text-align:left;
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
     }
 
-    /* ---------- Typography ---------- */
-    h1 {
-      margin:8px 0 12px 0;
-      font-family: 'Rye', cursive;
-      font-size:2.6rem;
-      line-height:1;
-      color:var(--accent);
-      text-align:center;
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--dim);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
     }
 
-    h2 {
-      margin:0 0 12px 0;
-      font-family: 'Rye', cursive;
-      font-size:1.8rem;
-      color:var(--text);
-      text-align:center;
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── Hero ──────────────────────────────────────── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      text-align: center;
     }
 
-    h3 {
-      margin:18px 0 8px 0;
-      font-size:1.05rem;
-      color:var(--text);
+    .hero-inner { max-width: 760px; }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.2s forwards;
     }
 
-    p { margin:8px 0; color:var(--muted); font-style:italic; line-height:1.5; }
-
-    a { color: var(--link); text-decoration:none; font-weight:600; }
-    a:hover { text-decoration:underline; }
-
-    /* ---------- Lists & spacing ---------- */
-    ul.clean {
-      list-style:none;
-      padding-left:0;
-      margin:12px 0 0 0;
-      text-align:left;
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
     }
 
-    ul.clean li {
-      margin-bottom:12px; 
-      line-height:1.45;
-      font-size:1rem;
-      color:var(--muted);
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
     }
 
-    
-    .project-item + .project-item { margin-top:10px; padding-top:6px; border-top:1px dashed rgba(255,255,255,0.04); }
-
-    
-    .contact-info {
-      text-align:left;
-      margin-top:16px;
-      padding-left:8px;
-      color:var(--muted);
+    .hero-sub {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--dim);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
     }
 
-    .contact-info a { color:var(--link); }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
 
-    /* ---------- Footer ---------- */
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--dim);
+      background: rgba(255,255,255,0.03);
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      color: var(--accent);
+      border-color: rgba(167,139,250,0.4);
+      background: rgba(167,139,250,0.06);
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s forwards;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0012;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background: #c4b5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(167,139,250,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.04);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Section Base ──────────────────────────────── */
+    section:not(#home) {
+      padding: 100px 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--white);
+      margin-bottom: 48px;
+      line-height: 1.1;
+    }
+
+    /* ─── Divider ───────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ─── Projects ──────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(167,139,250,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-icon {
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+
+    .project-name {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+
+    .project-stack {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      padding: 3px 9px;
+      background: rgba(103,232,249,0.07);
+      border: 1px solid rgba(103,232,249,0.15);
+      border-radius: 4px;
+      color: var(--accent2);
+    }
+
+    /* ─── Research ──────────────────────────────────── */
+    .research-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .research-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.25s;
+    }
+
+    .research-item:hover {
+      border-color: rgba(167,139,250,0.25);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .research-num {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: rgba(167,139,250,0.35);
+      font-weight: 500;
+      padding-top: 2px;
+    }
+
+    .research-title {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .research-desc {
+      font-size: 0.85rem;
+      color: var(--dim);
+      line-height: 1.65;
+    }
+
+    .research-models {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    /* ─── Hobbies ────────────────────────────────────── */
+    .hobbies-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .hobby-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .hobby-card:hover {
+      border-color: rgba(167,139,250,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .hobby-icon { font-size: 2.2rem; margin-bottom: 14px; }
+
+    .hobby-title {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .hobby-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.6; margin-bottom: 18px; }
+
+    .hobby-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(167,139,250,0.3);
+      padding-bottom: 2px;
+      transition: all 0.2s;
+    }
+
+    .hobby-link:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    /* ─── Contact ───────────────────────────────────── */
+    #contact {
+      padding-bottom: 80px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: block;
+    }
+
+    .contact-item:hover {
+      border-color: rgba(167,139,250,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+    }
+
+    .contact-item-icon { font-size: 1.6rem; margin-bottom: 10px; }
+
+    .contact-item-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 6px;
+    }
+
+    .contact-item-value {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    /* ─── Footer ────────────────────────────────────── */
     footer {
-      flex-shrink:0;
-      text-align:center;
-      padding:18px 10px;
-      font-size:0.95rem;
-      background: linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.18));
-      border-top:1px solid rgba(255,255,255,0.05);
-      color:var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .quote { font-style:italic; margin-bottom:6px; color:#e7e7e7; }
-
-    /* ---------- Responsive ---------- */
-    @media (max-width:900px){
-      .glass-box { padding:20px; max-width:720px; }
-      h1 { font-size:2.1rem; }
-      h2 { font-size:1.5rem; }
-      section { padding:40px 16px; }
+    .footer-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--dim);
+      max-width: 500px;
+      line-height: 1.5;
     }
 
-    @media (max-width:520px){
-      h1 { font-size:1.8rem; }
-      .glass-box { padding:16px; }
-      ul.clean li { font-size:0.95rem; }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.06em;
     }
 
+    /* ─── Scroll fade-in ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── Animations ─────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 20px; }
+      .hobbies-row { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+      section:not(#home) { padding: 70px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <main>
 
-      <!-- HOME -->
-      <section id="home">
-        <div class="glass-box">
-          <h1>Konnichiwa ~ Sara Rahman</h1>
-          <p>🎓 Fresh graduate from North South University in Computer Science & Engineering.
-             <br>Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science & Deep Learning.</p>
+<canvas id="starfield"></canvas>
 
-          <div class="contact-info left">
-            <p><strong>Mail:</strong> <a href="mailto:rahman.sara1729@gmail.com">rahman.sara1729@gmail.com</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/roronoa-sara" target="_blank" rel="noopener">Profile</a></p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/sararahman1729" target="_blank" rel="noopener">Projects of Sara</a></p>
-          </div>
+<div class="page">
 
-          <p style="margin-top:14px;"><strong>Motto:</strong> "Carpe Diem"</p>
+  <!-- ─── Nav ─────────────────────────────── -->
+  <nav>
+    <span class="nav-logo">sara.rahman</span>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── Hero ─────────────────────────────── -->
+  <section id="home">
+    <div class="hero-inner">
+      <span class="hero-tag">Motto ~ Carpe Diem</span>
+      <h1 class="hero-name">Sara<br><em>Rahman</em></h1>
+      <p class="hero-sub">Fresh graduate from North South University in Computer Science & Engineering.
+             <br>Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science, Deep Learning & Robotics.</p>
+
+      <div class="hero-tags">
+        <span class="tag">Quantum Computing</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">Astrophysics</span>
+        <span class="tag">Data Science</span>
+        
+      </div>
+
+      <div class="hero-links">
+        <a href="#projects" class="btn btn-primary">View Work</a>
+        <a href="mailto:rahman.sara1729@gmail.com" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Projects ─────────────────────────── -->
+  <section id="projects">
+    <span class="section-label reveal">Selected Work</span>
+    <h2 class="section-title reveal">Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Bangla Programming Language</div>
+        <div class="project-desc">A compiler-based tool designed to teach coding fundamentals in Bengali, lowering the barrier to programming for native speakers.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Compiler Design</span>
+          <span class="stack-tag">CFG</span>
+          <span class="stack-tag">Tokenizer</span>
         </div>
-      </section>
+      </div>
 
-      <section id="projects">
-  <div class="glass-box">
-    <h2>Poiesis of Sara</h2>
-    <p>Selected academic and personal projects, course work and creative builds.</p>
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Library Management System</div>
+        <div class="project-desc">C-based inventory and loan management system with modular architecture for tracking books and member transactions.</div>
+        <div class="project-stack">
+          <span class="stack-tag">C</span>
+          <span class="stack-tag">Data Structures</span>
+        </div>
+      </div>
 
-    <ul class="clean">
-      <li><strong>Bangla Programming Language:</strong> A compiler-based tool to teach coding fundamentals in Bengali.</li>
-      <li><strong>Library Management Project:</strong> C-based system for inventory and loans/returns.</li>
-      <li><strong>Medical Service Provider:</strong> JavaScript web app for healthcare workflows (course project).</li>
-      <li><strong>CGPA Calculator:</strong> Java application following NSU grading policy.</li>
-      <li><strong>Crunchyroll-inspired site:</strong> Anime-themed UI & frontend implementation.</li>
-      <li><strong>Mental Health Prediction Web App:</strong> Frontend for ML-powered mental health prediction.</li>
-    </ul>
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Medical Service Provider</div>
+        <div class="project-desc">A Medical Chatbot to help in appointment scheduling, showing patient records, and service discovery.</div>
+        <div class="project-stack">
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">HTML/CSS</span>
+        </div>
+      </div>
 
-    <h3 style="margin-top:30px;">AI Research Projects</h3>
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">CGPA Calculator</div>
+        <div class="project-desc">Java application implementing NSU's grading policy for accurate semester and cumulative GPA computation.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Java</span>
+          <span class="stack-tag">OOP</span>
+        </div>
+      </div>
 
-    <ul class="clean">
-      <li><strong>Suicidal Ideation Prediction </strong><br>
-      Comparative study of ML models to predict suicidal ideation using the dataset of MDD patients.<br>
-      Models: Logistic Regression, Decision Tree, Random Forest, AdaBoost, KNN, XGBoost.<br>
-      Tools: NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, MLxtend, XGBoost, SciPy.
-      </li>
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Quantum Computing</div>
+        <div class="project-desc">Quantum Computing based research project of combined Quantum energy teleporation via Quantum Oblivious Transfer </div>
+        <div class="project-stack">
+          <span class="stack-tag">Qiskit</span>
+          <span class="stack-tag">Quantum Oblivious Transfer</span>
+          <span class="stack-tag">Quantum Energy Teleportation</span>
+        </div>
+      </div>
+      
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Crunchyroll-Inspired Website</div>
+        <div class="project-desc">Anime-themed frontend based website using MySQL database system</div>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
 
-      <li style="margin-top:15px;"><strong>Custom Loss Function (Knowledge Distillation)</strong><br>
-      Designed a custom KD loss combining cross-entropy and confidence penalty.<br> Tested on CIFAR-100, Tiny ImageNet, CUB-200.<br>
-      Student Models: ShuffleNetV1, ResNet-18/34/50, EfficientNet-B0.<br>
-      Teacher Models: VGG13-BN, ResNet50, DeepLabV3+ResNet101, EfficientNet-B0/B3.<br>
-      Tools: NumPy, Matplotlib, Seaborn, Scikit-learn, PyTorch, torchvision. <br>Optimizers: Adam, AdamW, SGD+Momentum.
-      </li>
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Mental Health Prediction App</div>
+        <div class="project-desc">Frontend interface for an ML-powered mental health screening tool, designed for accessibility and empathetic UX.</div>
+        <div class="project-stack">
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">ML Integration</span>
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+        </div>
+      </div>
 
-      <li style="margin-top:15px;"><strong>Bangla Speech Audio Classification</strong><br>
-      Hybrid audio classification models with hyperparameter optimization (Random, Grid, Bayesian).<br>
-      Models: CNN, Bi-LSTM, YAMNet, SVM, wav2vec2.<br>
-      Tools: NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, librosa, TensorFlow, joblib. <br>Optimizers: Adam, SGD+Momentum.
-      </li>
-    </ul>
-  </div>
+    </div>
+  </section>
 
-  <!-- Hobbies box -->
-  <div class="glass-box">
-    <h2>Hobbies</h2>
-    <p>Some of my creative works</p>
-    <ul class="clean">
-      <li><strong>Art Page:</strong> <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank">Artifacts</a></li>
-      <li><strong>Poetry Page:</strong> <a href="https://allpoetry.com/Veronica-sara" target="_blank">Short Poems</a></li>
-    </ul>
-  </div>
-</section>
+  <div class="divider"></div>
 
+  <!-- ─── Research ─────────────────────────── -->
+  <section id="research">
+    <span class="section-label reveal">Academic Work</span>
+    <h2 class="section-title reveal">AI Research</h2>
 
-    </main>
+    <div class="research-list">
 
-    <footer>
-      <div class="quote">“Be alone, that is the secret of invention; be alone, that is when ideas are born” ~ Nikola Tesla</div>
-      © 2025 Sara Rahman
-    </footer>
-  </div>
+      <div class="research-item reveal">
+        <span class="research-num">01</span>
+        <div>
+          <div class="research-title">Suicidal Ideation Prediction in MDD Patients</div>
+          <div class="research-desc">Comparative study of ML classifiers to predict suicidal ideation using clinical datasets of major depressive disorder patients. Evaluated model fairness, AUC, and recall across multiple algorithms.</div>
+          <div class="research-models">
+            <span class="stack-tag">Logistic Regression</span>
+            <span class="stack-tag">Random Forest</span>
+            <span class="stack-tag">XGBoost</span>
+            <span class="stack-tag">AdaBoost</span>
+            <span class="stack-tag">KNN</span>
+            <span class="stack-tag">Scikit-learn</span>
+            <span class="stack-tag">Pandas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item reveal">
+        <span class="research-num">02</span>
+        <div>
+          <div class="research-title">Custom Loss Function for Knowledge Distillation</div>
+          <div class="research-desc">Designed a novel KD loss combining cross-entropy with a confidence penalty term to improve student model generalisation on CIFAR-100, Tiny ImageNet, and CUB-200 datasets across multiple teacher-student pairs.</div>
+          <div class="research-models">
+            <span class="stack-tag">PyTorch</span>
+            <span class="stack-tag">ResNet-18/34/50</span>
+            <span class="stack-tag">EfficientNet-B0</span>
+            <span class="stack-tag">ShuffleNetV1</span>
+            <span class="stack-tag">VGG13-BN</span>
+            <span class="stack-tag">Adam / AdamW / SGD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="research-item reveal">
+        <span class="research-num">03</span>
+        <div>
+          <div class="research-title">Bangla Speech Audio Classification</div>
+          <div class="research-desc">Hybrid audio classification pipeline with systematic hyperparameter optimisation (Random, Grid, Bayesian search). Compared CNN, Bi-LSTM, and transformer-based approaches on Bangla speech corpora.</div>
+          <div class="research-models">
+            <span class="stack-tag">TensorFlow</span>
+            <span class="stack-tag">CNN</span>
+            <span class="stack-tag">Bi-LSTM</span>
+            <span class="stack-tag">YAMNet</span>
+            <span class="stack-tag">wav2vec2</span>
+            <span class="stack-tag">librosa</span>
+            <span class="stack-tag">SVM</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Hobbies ───────────────────────────── -->
+  <section id="hobbies">
+    <span class="section-label reveal">Beyond Code</span>
+    <h2 class="section-title reveal">Creative Work</h2>
+
+    <div class="hobbies-row">
+
+      <div class="hobby-card reveal">
+        <div class="hobby-icon">🎨</div>
+        <div class="hobby-title">Visual Art</div>
+        <div class="hobby-desc">Merging different ideas through random sketches</div>
+        <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank" class="hobby-link">View Artwork →</a>
+      </div>
+
+      <div class="hobby-card reveal">
+        <div class="hobby-icon">✍️</div>
+        <div class="hobby-title">Poetry</div>
+        <div class="hobby-desc">Expressing multiple views of life and spirituality through short poems/div>
+        <a href="https://allpoetry.com/Veronica-sara" target="_blank" class="hobby-link">Read Poems →</a>
+      </div>
+
+      <div class="hobby-card reveal">
+        <div class="hobby-icon">✍️</div>
+        <div class="hobby-title">Article Writing</div>
+        <div class="hobby-desc">Exploring different values of the multiverse by writing it down</div>
+        <a href="https://allpoetry.com/Veronica-sara" target="_blank" class="hobby-link">Read Articles →</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Contact ───────────────────────────── -->
+  <section id="contact">
+    <span class="section-label reveal">Reach Out</span>
+    <h2 class="section-title reveal">Contact</h2>
+
+    <div class="contact-grid">
+
+      <a href="mailto:rahman.sara1729@gmail.com" class="contact-item reveal">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value">rahman.sara1729@gmail.com</div>
+      </a>
+
+      <a href="https://www.linkedin.com/in/roronoa-sara" target="_blank" class="contact-item reveal">
+        <div class="contact-item-icon">💼</div>
+        <div class="contact-item-label">LinkedIn</div>
+        <div class="contact-item-value">roronoa-sara</div>
+      </a>
+
+      <a href="https://github.com/sararahman1729" target="_blank" class="contact-item reveal">
+        <div class="contact-item-icon">⚙️</div>
+        <div class="contact-item-label">GitHub</div>
+        <div class="contact-item-value">sararahman1729</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─── Footer ───────────────────────────── -->
+  <footer>
+    <p class="footer-quote">"Be alone, that is the secret of invention; be alone, that is when ideas are born." — Nikola Tesla</p>
+    <span class="footer-copy">© 2025 Sara Rahman</span>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+  /* ── Starfield ─────────────────────────── */
+  (function() {
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const N = 200;
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function init() {
+      stars = [];
+      for (let i = 0; i < N; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.2 + 0.2,
+          a: Math.random(),
+          speed: Math.random() * 0.003 + 0.001,
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+    }
+
+    function draw(t) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        const alpha = 0.3 + 0.5 * Math.sin(t * s.speed + s.phase);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    init();
+    window.addEventListener('resize', () => { resize(); init(); });
+    requestAnimationFrame(draw);
+  })();
+
+  /* ── Scroll reveal ─────────────────────── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>

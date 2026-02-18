@@ -23,11 +23,8 @@
       --sans:      'DM Sans', sans-serif;
     }
 
-    /* ─── Reset & Base ──────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; font-size: 16px; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -36,504 +33,290 @@
       overflow-x: hidden;
     }
 
-    /* ─── Starfield canvas ──────────────────────────── */
-    #starfield {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
+    #starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-    /* ─── Noise overlay ─────────────────────────────── */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      background-size: 256px;
-      opacity: 0.4;
+      background-size: 256px; opacity: 0.4;
     }
 
-    /* ─── Layout ────────────────────────────────────── */
     .page { position: relative; z-index: 2; }
 
     /* ─── Nav ───────────────────────────────────────── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 18px 48px;
       background: rgba(6,7,13,0.7);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
+    .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
     .nav-links a {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--dim);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+      font-family: var(--mono); font-size: 0.78rem; color: var(--dim);
+      text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s;
     }
-
     .nav-links a:hover { color: var(--white); }
 
     /* ─── Hero ──────────────────────────────────────── */
     #home {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 80px;
-      text-align: center;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 120px 24px 80px; text-align: center;
     }
-
     .hero-inner { max-width: 760px; }
-
     .hero-tag {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent2);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 0.7s ease 0.2s forwards;
+      display: inline-block; font-family: var(--mono); font-size: 0.75rem;
+      color: var(--accent2); letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 24px; opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
     }
-
     .hero-name {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1.05;
-      color: var(--white);
-      margin-bottom: 12px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.4s forwards;
+      font-family: var(--serif); font-size: clamp(3rem, 8vw, 5.5rem); line-height: 1.05;
+      color: var(--white); margin-bottom: 12px; opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
     }
-
-    .hero-name em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
+    .hero-name em { font-style: italic; color: var(--accent); }
     .hero-sub {
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: 1.05rem;
-      color: var(--dim);
-      max-width: 520px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.6s forwards;
+      font-family: var(--sans); font-weight: 300; font-size: 1.05rem; color: var(--dim);
+      max-width: 520px; margin: 0 auto 40px; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
     }
-
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 44px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.8s forwards;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-bottom: 44px; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards;
     }
-
     .tag {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      padding: 6px 14px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--dim);
-      background: rgba(255,255,255,0.03);
-      text-transform: uppercase;
-      transition: all 0.2s;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+      padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px;
+      color: var(--dim); background: rgba(255,255,255,0.03); text-transform: uppercase; transition: all 0.2s;
     }
-
-    .tag:hover {
-      color: var(--accent);
-      border-color: rgba(167,139,250,0.4);
-      background: rgba(167,139,250,0.06);
-    }
-
+    .tag:hover { color: var(--accent); border-color: rgba(167,139,250,0.4); background: rgba(167,139,250,0.06); }
     .hero-links {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 1s forwards;
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s ease 1s forwards;
     }
-
     .btn {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 12px 28px;
-      border-radius: 6px;
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; padding: 12px 28px; border-radius: 6px; transition: all 0.25s;
+      cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px;
     }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #0a0012;
-      font-weight: 500;
-    }
-
-    .btn-primary:hover {
-      background: #c4b5fd;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(167,139,250,0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      border-color: rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.04);
-      transform: translateY(-2px);
-    }
+    .btn-primary { background: var(--accent); color: #0a0012; font-weight: 500; }
+    .btn-primary:hover { background: #c4b5fd; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(167,139,250,0.3); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); transform: translateY(-2px); }
 
     /* ─── Section Base ──────────────────────────────── */
-    section:not(#home) {
-      padding: 100px 24px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
+    section:not(#home) { padding: 100px 24px; max-width: 1000px; margin: 0 auto; }
     .section-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 12px;
-      display: block;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent2); margin-bottom: 12px; display: block;
     }
-
     .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: var(--white);
-      margin-bottom: 48px;
-      line-height: 1.1;
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--white); margin-bottom: 48px; line-height: 1.1;
     }
-
-    /* ─── Divider ───────────────────────────────────── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    .divider { width: 100%; height: 1px; background: var(--border); max-width: 1000px; margin: 0 auto; }
 
     /* ─── Projects ──────────────────────────────────── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
     .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px; transition: all 0.3s ease; position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
-
     .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity 0.3s;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s;
     }
-
-    .project-card:hover {
-      border-color: rgba(167,139,250,0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-
+    .project-card:hover { border-color: rgba(167,139,250,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
     .project-card:hover::before { opacity: 1; }
-
-    .project-icon {
-      font-size: 1.4rem;
-      margin-bottom: 14px;
-    }
-
-    .project-name {
-      font-family: var(--sans);
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .project-desc {
-      font-size: 0.85rem;
-      color: var(--dim);
-      line-height: 1.6;
-    }
-
-    .project-stack {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    .project-icon { font-size: 1.4rem; margin-bottom: 14px; }
+    .project-name { font-family: var(--sans); font-size: 0.95rem; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+    .project-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.6; flex: 1; }
+    .project-stack { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
     .stack-tag {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.05em;
-      padding: 3px 9px;
-      background: rgba(103,232,249,0.07);
-      border: 1px solid rgba(103,232,249,0.15);
-      border-radius: 4px;
-      color: var(--accent2);
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.05em;
+      padding: 3px 9px; background: rgba(103,232,249,0.07); border: 1px solid rgba(103,232,249,0.15);
+      border-radius: 4px; color: var(--accent2);
     }
+    .project-github {
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .project-github a {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+    }
+    .project-github a:hover { color: var(--accent); }
+    .project-github svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
     /* ─── Research ──────────────────────────────────── */
     .research-list { display: flex; flex-direction: column; gap: 24px; }
-
     .research-item {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 20px;
-      align-items: start;
-      padding: 28px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: all 0.25s;
+      display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start;
+      padding: 28px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; transition: all 0.25s;
+    }
+    .research-item:hover { border-color: rgba(167,139,250,0.25); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+    .research-num { font-family: var(--mono); font-size: 1.1rem; color: rgba(167,139,250,0.35); font-weight: 500; padding-top: 2px; }
+    .research-title { font-family: var(--sans); font-weight: 500; font-size: 1rem; color: var(--white); margin-bottom: 8px; }
+    .research-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.65; }
+    .research-models { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+    /* GitHub link inside research cards */
+    .research-github {
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .research-github a {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+    }
+    .research-github a:hover { color: var(--accent); }
+    .research-github svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+    /* ─── Experience ────────────────────────────────── */
+    .experience-list { display: flex; flex-direction: column; gap: 20px; }
+    .experience-item {
+      display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+      padding: 28px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .experience-item::before {
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.3s;
+    }
+    .experience-item:hover { border-color: rgba(167,139,250,0.25); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+    .experience-item:hover::before { opacity: 1; }
+    .experience-icon {
+      width: 44px; height: 44px; border-radius: 10px; background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.2); display: flex; align-items: center;
+      justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+    }
+    .experience-role {
+      font-family: var(--sans); font-weight: 500; font-size: 1rem; color: var(--white); margin-bottom: 4px;
+    }
+    .experience-org {
+      font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em;
+      color: var(--accent); margin-bottom: 6px;
+    }
+    .experience-period {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em;
+      color: var(--dim); margin-bottom: 10px;
+    }
+    .experience-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.65; }
+    .experience-skills { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .exp-tag {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.05em;
+      padding: 3px 9px; background: rgba(167,139,250,0.07); border: 1px solid rgba(167,139,250,0.18);
+      border-radius: 4px; color: var(--accent);
     }
 
-    .research-item:hover {
-      border-color: rgba(167,139,250,0.25);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    /* ─── Extracurricular ───────────────────────────── */
+    .extra-tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .extra-tab {
+      font-family: var(--mono); font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 6px; border: 1px solid var(--border);
+      background: transparent; color: var(--dim); cursor: pointer; transition: all 0.2s;
     }
+    .extra-tab.active, .extra-tab:hover {
+      background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.4); color: var(--accent);
+    }
+    .extra-panel { display: none; }
+    .extra-panel.active { display: flex; flex-direction: column; gap: 16px; }
+    .extra-item {
+      display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
+      padding: 22px 24px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; transition: all 0.25s;
+    }
+    .extra-item:hover { border-color: rgba(103,232,249,0.25); box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
+    .extra-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent2);
+      margin-top: 7px; flex-shrink: 0;
+    }
+    .extra-dot.hackathon   { background: var(--accent); }
+    .extra-dot.seminar     { background: #f9a84d; }
+    .extra-dot.competition { background: #4ade80; }
+    .extra-dot.volunteer   { background: #f472b6; }
+    .extra-item-title { font-family: var(--sans); font-weight: 500; font-size: 0.95rem; color: var(--white); margin-bottom: 4px; }
+    .extra-item-meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 6px; }
+    .extra-item-desc { font-size: 0.83rem; color: var(--dim); line-height: 1.6; }
+    .extra-badge {
+      display: inline-block; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle;
+    }
+    .badge-workshop   { background: rgba(103,232,249,0.1); color: var(--accent2); border: 1px solid rgba(103,232,249,0.2); }
+    .badge-hackathon  { background: rgba(167,139,250,0.1); color: var(--accent);  border: 1px solid rgba(167,139,250,0.2); }
+    .badge-seminar    { background: rgba(249,168,77,0.1);  color: #f9a84d;        border: 1px solid rgba(249,168,77,0.2); }
+    .badge-competition{ background: rgba(74,222,128,0.1);  color: #4ade80;        border: 1px solid rgba(74,222,128,0.2); }
+    .badge-volunteer  { background: rgba(244,114,182,0.1); color: #f472b6;        border: 1px solid rgba(244,114,182,0.2); }
 
-    .research-num {
-      font-family: var(--mono);
-      font-size: 1.1rem;
-      color: rgba(167,139,250,0.35);
-      font-weight: 500;
-      padding-top: 2px;
+    /* Certification link inside activity items */
+    .extra-cert {
+      margin-top: 10px; display: inline-flex; align-items: center; gap: 6px;
     }
-
-    .research-title {
-      font-family: var(--sans);
-      font-weight: 500;
-      font-size: 1rem;
-      color: var(--white);
-      margin-bottom: 8px;
+    .extra-cert a {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--accent2); text-decoration: none; display: inline-flex; align-items: center;
+      gap: 5px; border: 1px solid rgba(103,232,249,0.2); padding: 3px 10px; border-radius: 4px;
+      background: rgba(103,232,249,0.04); transition: all 0.2s;
     }
-
-    .research-desc {
-      font-size: 0.85rem;
-      color: var(--dim);
-      line-height: 1.65;
-    }
-
-    .research-models {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .extra-cert a:hover { color: var(--white); border-color: rgba(103,232,249,0.5); background: rgba(103,232,249,0.1); }
+    .extra-cert a svg { width: 11px; height: 11px; fill: currentColor; }
 
     /* ─── Hobbies ────────────────────────────────────── */
-    .hobbies-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    #hobbies { padding-top: 60px; padding-bottom: 60px; }
+    .hobbies-compact { display: flex; flex-wrap: wrap; gap: 14px; }
+    .hobby-pill {
+      display: flex; align-items: center; gap: 10px; padding: 12px 20px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      transition: all 0.25s; text-decoration: none;
     }
-
-    .hobby-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px;
-      text-align: center;
-      transition: all 0.3s;
-    }
-
-    .hobby-card:hover {
-      border-color: rgba(167,139,250,0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
-
-    .hobby-icon { font-size: 2.2rem; margin-bottom: 14px; }
-
-    .hobby-title {
-      font-family: var(--sans);
-      font-weight: 500;
-      font-size: 1rem;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .hobby-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.6; margin-bottom: 18px; }
-
-    .hobby-link {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(167,139,250,0.3);
-      padding-bottom: 2px;
-      transition: all 0.2s;
-    }
-
-    .hobby-link:hover {
-      color: var(--white);
-      border-color: var(--white);
-    }
+    .hobby-pill:hover { border-color: rgba(167,139,250,0.35); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .hobby-pill-icon { font-size: 1.25rem; }
+    .hobby-pill-name { font-family: var(--sans); font-weight: 500; font-size: 0.88rem; color: var(--white); }
+    .hobby-pill-link { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 
     /* ─── Contact ───────────────────────────────────── */
-    #contact {
-      padding-bottom: 80px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-    }
-
+    #contact { padding-bottom: 80px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
     .contact-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 24px;
-      text-align: center;
-      text-decoration: none;
-      transition: all 0.25s;
-      display: block;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px 24px; text-align: center; text-decoration: none; transition: all 0.25s; display: block;
     }
-
-    .contact-item:hover {
-      border-color: rgba(167,139,250,0.35);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
-    }
-
+    .contact-item:hover { border-color: rgba(167,139,250,0.35); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
     .contact-item-icon { font-size: 1.6rem; margin-bottom: 10px; }
-
-    .contact-item-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 6px;
-    }
-
-    .contact-item-value {
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-weight: 500;
-      word-break: break-all;
-    }
+    .contact-item-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 6px; }
+    .contact-item-value { font-size: 0.85rem; color: var(--accent); font-weight: 500; word-break: break-all; }
 
     /* ─── Footer ────────────────────────────────────── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 36px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      border-top: 1px solid var(--border); padding: 36px 48px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
     }
+    .footer-quote { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--dim); max-width: 500px; line-height: 1.5; }
+    .footer-copy { font-family: var(--mono); font-size: 0.75rem; color: rgba(255,255,255,0.2); letter-spacing: 0.06em; }
 
-    .footer-quote {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 0.9rem;
-      color: var(--dim);
-      max-width: 500px;
-      line-height: 1.5;
-    }
+    /* ─── Scroll reveal ──────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    .footer-copy {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.06em;
-    }
-
-    /* ─── Scroll fade-in ─────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ─── Animations ─────────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── Responsive ─────────────────────────────────── */
+    /* GitHub icon SVG reusable path */
+    .gh-icon-path { d: path("M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"); }
+
     @media (max-width: 700px) {
       nav { padding: 16px 20px; }
-      .nav-links { gap: 20px; }
-      .hobbies-row { grid-template-columns: 1fr; }
+      .nav-links { gap: 14px; }
       .contact-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; }
       section:not(#home) { padding: 70px 20px; }
+      #hobbies { padding: 40px 20px; }
     }
-
     @media (max-width: 480px) {
       .nav-links { display: none; }
     }
@@ -547,11 +330,13 @@
 
   <!-- ─── Nav ─────────────────────────────── -->
   <nav>
-    <span class="nav-logo">sara.rahman</span>
+    <span class="nav-logo">S.R</span>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#extracurricular">Activities</a></li>
       <li><a href="#hobbies">Hobbies</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -564,16 +349,13 @@
       <h1 class="hero-name">Sara<br><em>Rahman</em></h1>
       <p class="hero-sub">Fresh graduate from North South University in Computer Science & Engineering.
              <br>Passionate about Quantum Computing, Machine Learning, Astrophysics, Data Science, Deep Learning & Robotics.</p>
-
       <div class="hero-tags">
         <span class="tag">Quantum Computing</span>
         <span class="tag">Machine Learning</span>
         <span class="tag">Deep Learning</span>
         <span class="tag">Astrophysics</span>
         <span class="tag">Data Science</span>
-        
       </div>
-
       <div class="hero-links">
         <a href="#projects" class="btn btn-primary">View Work</a>
         <a href="mailto:rahman.sara1729@gmail.com" class="btn btn-outline">Get in Touch</a>
@@ -587,7 +369,6 @@
   <section id="projects">
     <span class="section-label reveal">Selected Work</span>
     <h2 class="section-title reveal">Projects</h2>
-
     <div class="projects-grid">
 
       <div class="project-card reveal">
@@ -595,9 +376,14 @@
         <div class="project-name">Bangla Programming Language</div>
         <div class="project-desc">A compiler-based tool designed to teach coding fundamentals in Bengali, lowering the barrier to programming for native speakers.</div>
         <div class="project-stack">
-          <span class="stack-tag">Compiler Design</span>
-          <span class="stack-tag">CFG</span>
-          <span class="stack-tag">Tokenizer</span>
+          <span class="stack-tag">Compiler Design</span><span class="stack-tag">CFG</span>
+          <span class="stack-tag">Tokenizer</span><span class="stack-tag">Parser</span><span class="stack-tag">Antlr4</span>
+        </div>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/Bangla-Programming-Language" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
 
@@ -606,18 +392,28 @@
         <div class="project-name">Library Management System</div>
         <div class="project-desc">C-based inventory and loan management system with modular architecture for tracking books and member transactions.</div>
         <div class="project-stack">
-          <span class="stack-tag">C</span>
-          <span class="stack-tag">Data Structures</span>
+          <span class="stack-tag">C</span><span class="stack-tag">Data Structures</span>
+        </div>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/Library_management_project" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
 
       <div class="project-card reveal">
         <div class="project-icon"></div>
         <div class="project-name">Medical Service Provider</div>
-        <div class="project-desc">A Medical Chatbot to help in appointment scheduling, showing patient records, and service discovery.</div>
+        <div class="project-desc">A Medical Chatbot using replit to help in appointment scheduling, showing patient records, and service discovery.</div>
         <div class="project-stack">
-          <span class="stack-tag">JavaScript</span>
-          <span class="stack-tag">HTML/CSS</span>
+          <span class="stack-tag">Replit</span><span class="stack-tag">Python</span>
+        </div>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/Medical_service_provider" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
 
@@ -626,42 +422,60 @@
         <div class="project-name">CGPA Calculator</div>
         <div class="project-desc">Java application implementing NSU's grading policy for accurate semester and cumulative GPA computation.</div>
         <div class="project-stack">
-          <span class="stack-tag">Java</span>
-          <span class="stack-tag">OOP</span>
+          <span class="stack-tag">Java</span><span class="stack-tag">OOP</span><span class="stack-tag">JavaFX Computer app</span>
+        </div>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/CGPA_calculator" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
 
       <div class="project-card reveal">
         <div class="project-icon"></div>
         <div class="project-name">Quantum Computing</div>
-        <div class="project-desc">Quantum Computing based research project of combined Quantum energy teleporation via Quantum Oblivious Transfer </div>
+        <div class="project-desc">Quantum Computing based research project of combined Quantum Energy Teleportation via Quantum Oblivious Transfer.</div>
         <div class="project-stack">
-          <span class="stack-tag">Qiskit</span>
-          <span class="stack-tag">Quantum Oblivious Transfer</span>
+          <span class="stack-tag">Qiskit</span><span class="stack-tag">Quantum Oblivious Transfer</span>
           <span class="stack-tag">Quantum Energy Teleportation</span>
         </div>
-      </div>
-      
-      <div class="project-card reveal">
-        <div class="project-icon"></div>
-        <div class="project-name">Crunchyroll-Inspired Website</div>
-        <div class="project-desc">Anime-themed frontend based website using MySQL database system</div>
-        <div class="project-stack">
-          <span class="stack-tag">HTML</span>
-          <span class="stack-tag">CSS</span>
-          <span class="stack-tag">MySQL</span>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/Quantum-Entanglement" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
 
       <div class="project-card reveal">
         <div class="project-icon"></div>
-        <div class="project-name">Mental Health Prediction App</div>
+        <div class="project-name">Crunchyroll-Inspired Website</div>
+        <div class="project-desc">Anime-themed frontend based website using MySQL database system.</div>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">MySQL</span>
+        </div>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/Crunchyroll-Website" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon"></div>
+        <div class="project-name">Mental Health Prediction Web App</div>
         <div class="project-desc">Frontend interface for an ML-powered mental health screening tool, designed for accessibility and empathetic UX.</div>
         <div class="project-stack">
-          <span class="stack-tag">JavaScript</span>
-          <span class="stack-tag">ML Integration</span>
-          <span class="stack-tag">HTML</span>
-          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span><span class="stack-tag">ML Integration</span>
+          <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">PHP</span>
+        </div>
+        <div class="project-github">
+          <a href="https://github.com/sararahman1729/Aethermind" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            View on GitHub
+          </a>
         </div>
       </div>
 
@@ -683,13 +497,15 @@
           <div class="research-title">Suicidal Ideation Prediction in MDD Patients</div>
           <div class="research-desc">Comparative study of ML classifiers to predict suicidal ideation using clinical datasets of major depressive disorder patients. Evaluated model fairness, AUC, and recall across multiple algorithms.</div>
           <div class="research-models">
-            <span class="stack-tag">Logistic Regression</span>
-            <span class="stack-tag">Random Forest</span>
-            <span class="stack-tag">XGBoost</span>
-            <span class="stack-tag">AdaBoost</span>
-            <span class="stack-tag">KNN</span>
-            <span class="stack-tag">Scikit-learn</span>
-            <span class="stack-tag">Pandas</span>
+            <span class="stack-tag">Logistic Regression</span><span class="stack-tag">Random Forest</span>
+            <span class="stack-tag">XGBoost</span><span class="stack-tag">AdaBoost</span>
+            <span class="stack-tag">KNN</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">Pandas</span>
+          </div>
+          <div class="research-github">
+            <a href="https://github.com/sararahman1729/Suicidal-Ideation-Prediction" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              View on GitHub
+            </a>
           </div>
         </div>
       </div>
@@ -700,12 +516,15 @@
           <div class="research-title">Custom Loss Function for Knowledge Distillation</div>
           <div class="research-desc">Designed a novel KD loss combining cross-entropy with a confidence penalty term to improve student model generalisation on CIFAR-100, Tiny ImageNet, and CUB-200 datasets across multiple teacher-student pairs.</div>
           <div class="research-models">
-            <span class="stack-tag">PyTorch</span>
-            <span class="stack-tag">ResNet-18/34/50</span>
-            <span class="stack-tag">EfficientNet-B0</span>
-            <span class="stack-tag">ShuffleNetV1</span>
-            <span class="stack-tag">VGG13-BN</span>
-            <span class="stack-tag">Adam / AdamW / SGD</span>
+            <span class="stack-tag">PyTorch</span><span class="stack-tag">ResNet-18/34/50</span>
+            <span class="stack-tag">EfficientNet-B0</span><span class="stack-tag">ShuffleNetV1</span>
+            <span class="stack-tag">VGG13-BN</span><span class="stack-tag">Adam / AdamW / SGD</span>
+          </div>
+          <div class="research-github">
+            <a href="https://github.com/sararahman1729/Custom-Loss-Function" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              View on GitHub
+            </a>
           </div>
         </div>
       </div>
@@ -716,13 +535,15 @@
           <div class="research-title">Bangla Speech Audio Classification</div>
           <div class="research-desc">Hybrid audio classification pipeline with systematic hyperparameter optimisation (Random, Grid, Bayesian search). Compared CNN, Bi-LSTM, and transformer-based approaches on Bangla speech corpora.</div>
           <div class="research-models">
-            <span class="stack-tag">TensorFlow</span>
-            <span class="stack-tag">CNN</span>
-            <span class="stack-tag">Bi-LSTM</span>
-            <span class="stack-tag">YAMNet</span>
-            <span class="stack-tag">wav2vec2</span>
-            <span class="stack-tag">librosa</span>
-            <span class="stack-tag">SVM</span>
+            <span class="stack-tag">TensorFlow</span><span class="stack-tag">CNN</span>
+            <span class="stack-tag">Bi-LSTM</span><span class="stack-tag">YAMNet</span>
+            <span class="stack-tag">wav2vec2</span><span class="stack-tag">librosa</span><span class="stack-tag">SVM</span>
+          </div>
+          <div class="research-github">
+            <a href="https://github.com/sararahman1729/Audio-Classification-based-Research" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              View on GitHub
+            </a>
           </div>
         </div>
       </div>
@@ -732,28 +553,562 @@
 
   <div class="divider"></div>
 
-  <!-- ─── Hobbies ───────────────────────────── -->
-  <section id="hobbies">
-    <span class="section-label reveal">Beyond Code</span>
-    <h2 class="section-title reveal">Creative Work</h2>
+  <!-- ─── Experience ────────────────────────── -->
+  <section id="experience">
+    <span class="section-label reveal">Work History</span>
+    <h2 class="section-title reveal">Experience</h2>
 
-    <div class="hobbies-row">
+    <div class="experience-list">
 
-      <div class="hobby-card reveal">
-        <div class="hobby-icon">🎨</div>
-        <div class="hobby-title">Visual Art</div>
-        <div class="hobby-desc">Merging different ideas through random sketches</div>
-        <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank" class="hobby-link">View Artwork →</a>
-      </div>
-
-      <div class="hobby-card reveal">
-        <div class="hobby-icon">✍️</div>
-        <div class="hobby-title">Poetry</div>
-        <div class="hobby-desc">Expressing multiple views of life and spirituality through short poems/div>
-        <a href="https://allpoetry.com/Veronica-sara" target="_blank" class="hobby-link">Read Poems →</a>
+      <!-- PLACEHOLDER EXPERIENCE ITEMS — replace with your real experience -->
+      <div class="experience-item reveal">
+        <div class="experience-icon"></div>
+        <div>
+          <div class="experience-role">Undergraduate Teaching Assistant</div>
+          <div class="experience-org">North South University — Department of CSE</div>
+          <div class="experience-period">Jan 2024 – Present</div>
+          <div class="experience-desc">Assisted faculty on ML and deep learning research projects, including dataset curation, model training, and results analysis. Contributed to the Bangla Speech Classification and Suicidal Ideation Prediction papers.</div>
+          <div class="experience-skills">
+            <span class="exp-tag">Mathematics</span>
+            <span class="exp-tag">Physics</span>
+            <span class="exp-tag">Theory of Computations</span>
+            <span class="exp-tag">Teaching</span>
+          </div>
+        </div>
       </div>
 
       
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Extracurricular ───────────────────── -->
+  <section id="extracurricular">
+    <span class="section-label reveal">Beyond the Classroom</span>
+    <h2 class="section-title reveal">Extracurricular Activities</h2>
+
+    <div class="extra-tabs reveal">
+      <button class="extra-tab active" onclick="switchTab(event,'all')">All</button>
+      <button class="extra-tab" onclick="switchTab(event,'workshops')">Workshops</button>
+      <button class="extra-tab" onclick="switchTab(event,'seminars')">Seminars</button>
+      <button class="extra-tab" onclick="switchTab(event,'hackathons')">Hackathons</button>
+      <button class="extra-tab" onclick="switchTab(event,'competitions')">Competitions</button>
+      <button class="extra-tab" onclick="switchTab(event,'volunteering')">Volunteering</button>
+    </div>
+
+    <!-- ALL -->
+    <div class="extra-panel active" id="panel-all">
+
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Qiskit Fall Fest <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">Catholic University of America (Online) · 2025</div>
+          <div class="extra-item-desc">Hands-on sessions covering quantum gates, circuit design, and running experiments on IBM Quantum hardware using Qiskit. Explored Grover's algorithm and IBM Quantum technologies organized by IBM.</div>
+          <div class="extra-cert">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:c5a73bc9-f0ad-4014-87a8-403f187cb89c" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Short Course on Data Science <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">North South University · 2024</div>
+          <div class="extra-item-desc">Intensive Data Science Workshop, gaining hands-on experience in data analysis & statistical modelling under Professor Jennifer Widom (Dean of the School of Engineering at Stanford University) organized by NSUACM Student Chapter.</div>
+          <div class="extra-cert">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:adf1bbec-6f02-4ccbbfe3-632a01e67d09" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">IQM Quantum Computing Workshop <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">IQM Quantum School (Online) · 2025</div>
+          <div class="extra-item-desc">Intensive 3-day journey into quantum computing to explore quantum algorithms, quantum circuits & quantum gates through hands-on experience with real quantum computers.</div>
+          <div class="extra-cert">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Recitation Workshop <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">A poem recitation workshop organized by Holy Cross College.</div>
+          <div class="extra-cert">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:952755d9-e5de-470aabbf-2570efb5cc4f" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Astronomy and Astrophysics Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">IAAC (Germany) · 2023</div>
+          <div class="extra-item-desc">Participated in the global IAAC challenge, solving advanced problems in astronomy, astrophysics, and physics.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">Wall Magazine Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">Participated in the Wall Magazine Competition in Holy Cross College 16th Inter College Science Festival.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9fc46cde-318b-4a1f-96e1-c7ebfce527ff" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">ICPC Asia Dhaka Regional Contest <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Dhaka · 2021</div>
+          <div class="extra-item-desc">Participated in the regional round of ‘ICPC Asia Dhaka Regional Contest 2021’ gaininghands-on experience with competitive programming platforms, showcasing problem solving skills</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:967687f6-8dd2-4479-9756-e1a97396d3a5" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Youth Math Challenge <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">IYMC (Germany) · 2025</div>
+          <div class="extra-item-desc">Participated in the global Math challenge, solving advanced problems in Mathematics.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:5e9ea297-d0e1-4b5b-a39b-960caf59f3ce" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">Annual Art Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2017</div>
+          <div class="extra-item-desc">Participated in the Annual Art Competition of Holy Cross College.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d26a0b52-3f52-4951-885d-7d45f5f9545e" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Computational Science Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">ICSC (Germany) · 2025</div>
+          <div class="extra-item-desc">Participated in an international computational science contest involving problem-solving, analytical reasoning, and scientific computation tasks.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:3d0981cf-1e55-4607-bc25-410ab6afca0d" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot hackathon"></div>
+        <div>
+          <div class="extra-item-title">SOLVIO AI Hackathon <span class="extra-badge badge-hackathon">Hackathon</span></div>
+          <div class="extra-item-meta">Sheba Platform · 2025</div>
+          <div class="extra-item-desc">Participated in a hackathon organized by 'Sheba Platform' to design and prototype AI-based solutions using modern machine-learning tools.</div>
+          <div class="extra-cert">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d36a7177-7aa6-4d88-b5e0-68472b507e78" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot seminar"></div>
+        <div>
+          <div class="extra-item-title">Seminar on Rocket Technology <span class="extra-badge badge-seminar">Seminar</span></div>
+          <div class="extra-item-meta">Independent University of Bangladesh · 2019</div>
+          <div class="extra-item-desc">A seminar on 'Rocket Technology: A to Z' organized by Bangladesh Innovation Forum & NASA SOLVE at Independent University of Bangladesh.</div>
+          <div class="extra-cert">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:a7023fb1-274b-474b-94a4-41f9c03381f2" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Competitive Programming Bootcamp Season 13 <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">North South University Problem Solvers · 2022</div>
+          <div class="extra-item-desc">Intensive bootcamp covering competitive programming fundamentals, coding tactics and hands-on experience in problem solving platforms.</div>
+          <div class="extra-cert">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Hour of Code <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">NSUACM Student Chapter · 2023</div>
+          <div class="extra-item-desc">Intensive machine learning and GenAI Coding Workshop organized by NSU ACM SC.</div>
+          <div class="extra-cert">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+       <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Astronomy and Astrophysics Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">IAAC (Germany) · 2023</div>
+          <div class="extra-item-desc">Participated in the global IAAC challenge, solving advanced problems in astronomy, astrophysics, and physics.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">Wall Magazine Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">Participated in the Wall Magazine Competition in Holy Cross College 16th Inter College Science Festival.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9fc46cde-318b-4a1f-96e1-c7ebfce527ff" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">ICPC Asia Dhaka Regional Contest <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Dhaka · 2021</div>
+          <div class="extra-item-desc">Participated in the regional round of ‘ICPC Asia Dhaka Regional Contest 2021’ gaininghands-on experience with competitive programming platforms, showcasing problem solving skills</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:967687f6-8dd2-4479-9756-e1a97396d3a5" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Youth Math Challenge <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">IYMC (Germany) · 2025</div>
+          <div class="extra-item-desc">Participated in the global Math challenge, solving advanced problems in Mathematics.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:5e9ea297-d0e1-4b5b-a39b-960caf59f3ce" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">Annual Art Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2017</div>
+          <div class="extra-item-desc">Participated in the Annual Art Competition of Holy Cross College.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d26a0b52-3f52-4951-885d-7d45f5f9545e" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Computational Science Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">ICSC (Germany) · 2025</div>
+          <div class="extra-item-desc">Participated in an international computational science contest involving problem-solving, analytical reasoning, and scientific computation tasks.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:3d0981cf-1e55-4607-bc25-410ab6afca0d" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>  
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot seminar"></div>
+        <div>
+          <div class="extra-item-title">Career at NASA <span class="extra-badge badge-seminar">Seminar</span></div>
+          <div class="extra-item-meta">Independent University of Bangladesh · 2019</div>
+          <div class="extra-item-desc">A seminar on 'Career at NASA' organized by Bangladesh Innovation Forum & NASA SOLVE at Independent University of Bangladesh.</div>
+          <div class="extra-cert">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot hackathon"></div>
+        <div>
+          <div class="extra-item-title">Hack NSU Season 5 <span class="extra-badge badge-hackathon">Hackathon</span></div>
+          <div class="extra-item-meta">North South University · 2025</div>
+          <div class="extra-item-desc">Volunteered in Hack NSU season 5 as a moderator of R&D Floating Group of NSU ACM SC.</div>
+          <div class="extra-cert">
+            <a href="ttps://acrobat.adobe.com/id/urn:aaid:sc:AP:76c475d9-518e-42a3-8948-8679ce9b3aa0" target="_blank">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+              View Certificate
+            </a>
+          </div>
+        </div>
+      </div>
+
+        
+      </div>
+
+    </div>
+
+    <!-- WORKSHOPS -->
+    <div class="extra-panel" id="panel-workshops">
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Qiskit Fall Fest <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">Catholic University of America (Online) · 2025</div>
+          <div class="extra-item-desc">Hands-on sessions covering quantum gates, circuit design, and running experiments on IBM Quantum hardware using Qiskit.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:c5a73bc9-f0ad-4014-87a8-403f187cb89c" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Short Course on Data Science <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">North South University · 2024</div>
+          <div class="extra-item-desc">Intensive Data Science Workshop under Professor Jennifer Widom organized by NSUACM Student Chapter.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:adf1bbec-6f02-4ccbbfe3-632a01e67d09" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">IQM Quantum Computing Workshop <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">IQM Quantum School (Online) · 2025</div>
+          <div class="extra-item-desc">Intensive 3-day journey into quantum computing through hands-on experience with real quantum computers.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Competitive Programming Bootcamp Season 13 <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">North South University Problem Solvers · 2022</div>
+          <div class="extra-item-desc">Intensive bootcamp covering competitive programming fundamentals and hands-on problem solving.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Hour of Code <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">NSUACM Student Chapter · 2023</div>
+          <div class="extra-item-desc">Intensive ML and GenAI Coding Workshop organized by NSU ACM SC.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot"></div>
+        <div>
+          <div class="extra-item-title">Recitation Workshop <span class="extra-badge badge-workshop">Workshop</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">A poem recitation workshop organized by Holy Cross College.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:952755d9-e5de-470aabbf-2570efb5cc4f" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMINARS -->
+    <div class="extra-panel" id="panel-seminars">
+      <div class="extra-item reveal">
+        <div class="extra-dot seminar"></div>
+        <div>
+          <div class="extra-item-title">Seminar on Rocket Technology <span class="extra-badge badge-seminar">Seminar</span></div>
+          <div class="extra-item-meta">Independent University of Bangladesh · 2019</div>
+          <div class="extra-item-desc">A seminar on 'Rocket Technology: A to Z' organized by Bangladesh Innovation Forum & NASA SOLVE.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:a7023fb1-274b-474b-94a4-41f9c03381f2" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot seminar"></div>
+        <div>
+          <div class="extra-item-title">Career at NASA <span class="extra-badge badge-seminar">Seminar</span></div>
+          <div class="extra-item-meta">Independent University of Bangladesh · 2019</div>
+          <div class="extra-item-desc">A seminar on 'Career at NASA' organized by Bangladesh Innovation Forum & NASA SOLVE.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HACKATHONS -->
+    <div class="extra-panel" id="panel-hackathons">
+      <div class="extra-item reveal">
+        <div class="extra-dot hackathon"></div>
+        <div>
+          <div class="extra-item-title">SOLVIO AI Hackathon <span class="extra-badge badge-hackathon">Hackathon</span></div>
+          <div class="extra-item-meta">Sheba Platform · 2025</div>
+          <div class="extra-item-desc">Participated in a hackathon organized by 'Sheba Platform' to design and prototype AI-based solutions.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d36a7177-7aa6-4d88-b5e0-68472b507e78" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      <div class="extra-item reveal">
+        <div class="extra-dot hackathon"></div>
+        <div>
+          <div class="extra-item-title">Hack NSU Season 5 <span class="extra-badge badge-hackathon">Hackathon</span></div>
+          <div class="extra-item-meta">North South University · 2025</div>
+          <div class="extra-item-desc">Volunteered in Hack NSU season 5 as a moderator of R&D Floating Group of NSU ACM SC.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:76c475d9-518e-42a3-8948-8679ce9b3aa0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPETITIONS -->
+    <div class="extra-panel" id="panel-competitions">
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Astronomy and Astrophysics Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">IAAC (Germany) · 2023</div>
+          <div class="extra-item-desc">Participated in the global IAAC challenge, solving advanced problems in astronomy, astrophysics, and physics.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">Wall Magazine Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">Participated in the Wall Magazine Competition in Holy Cross College 16th Inter College Science Festival.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9fc46cde-318b-4a1f-96e1-c7ebfce527ff" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">ICPC Asia Dhaka Regional Contest <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Dhaka · 2021</div>
+          <div class="extra-item-desc">Participated in the regional round of ‘ICPC Asia Dhaka Regional Contest 2021’ gaininghands-on experience with competitive programming platforms, showcasing problem solving skills</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:967687f6-8dd2-4479-9756-e1a97396d3a5" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Youth Math Challenge <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">IYMC (Germany) · 2025</div>
+          <div class="extra-item-desc">Participated in the global Math challenge, solving advanced problems in Mathematics.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:5e9ea297-d0e1-4b5b-a39b-960caf59f3ce" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">Annual Art Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2017</div>
+          <div class="extra-item-desc">Participated in the Annual Art Competition of Holy Cross College.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d26a0b52-3f52-4951-885d-7d45f5f9545e" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot competition"></div>
+        <div>
+          <div class="extra-item-title">International Computational Science Competition <span class="extra-badge badge-competition">Competition</span></div>
+          <div class="extra-item-meta">ICSC (Germany) · 2025</div>
+          <div class="extra-item-desc">Participated in an international computational science contest involving problem-solving, analytical reasoning, and scientific computation tasks.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:3d0981cf-1e55-4607-bc25-410ab6afca0d" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOLUNTEERING -->
+    <div class="extra-panel" id="panel-volunteering">
+      <div class="extra-item reveal">
+        <div class="extra-dot volunteer"></div>
+        <div>
+          <div class="extra-item-title">Hack NSU Season 5 — Event Moderator <span class="extra-badge badge-volunteer">Volunteer</span></div>
+          <div class="extra-item-meta">NSU ACM Student Chapter · 2025</div>
+          <div class="extra-item-desc">Volunteered as a moderator of the R&D Floating Group, coordinating participants and ensuring smooth event operations throughout the hackathon.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+      <div class="extra-item reveal">
+        <div class="extra-dot volunteer"></div>
+        <div>
+          <div class="extra-item-title">Capstone Project Showcase <span class="extra-badge badge-volunteer">Volunteer</span></div>
+          <div class="extra-item-meta">North South University · 2022</div>
+          <div class="extra-item-desc">Volunteered in the Capstone Project Showcase organized by NSUACM Student Chapter.</div>
+          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot volunteer"></div>
+        <div>
+          <div class="extra-item-title">Event Decoration <span class="extra-badge badge-volunteer">Volunteer</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">Had actively participated in the decorations for stages, entrances, and event boards at college farewell, orientation, and other cultural programs.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:e1708d52-f3a3-40c9-868d-3bf33c18be96" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+
+      <div class="extra-item reveal">
+        <div class="extra-dot volunteer"></div>
+        <div>
+          <div class="extra-item-title">Holy Cross College Admission Test<span class="extra-badge badge-volunteer">Volunteer</span></div>
+          <div class="extra-item-meta">Holy Cross College · 2018</div>
+          <div class="extra-item-desc">Had actively participated in the decorations for stages, entrances, and event boards at college farewell, orientation, and other cultural programs.</div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:e1708d52-f3a3-40c9-868d-3bf33c18be96" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+        </div>
+      </div>
+      
+    </div>
+
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Hobbies ─────────────────────────── -->
+  <section id="hobbies">
+    <span class="section-label reveal">Beyond Code</span>
+    <h2 class="section-title reveal" style="margin-bottom:24px;">Creative Work</h2>
+    <div class="hobbies-compact">
+      <a href="https://www.instagram.com/spiritualis_odyssea_1729/" target="_blank" class="hobby-pill reveal">
+        <span class="hobby-pill-icon">🎨</span>
+        <div class="hobby-pill-info">
+          <div class="hobby-pill-name">Visual Art</div>
+          <div class="hobby-pill-link">View Artwork →</div>
+        </div>
+      </a>
+      <a href="https://allpoetry.com/Veronica-sara" target="_blank" class="hobby-pill reveal">
+        <span class="hobby-pill-icon">✍️</span>
+        <div class="hobby-pill-info">
+          <div class="hobby-pill-name">Poetry</div>
+          <div class="hobby-pill-link">Read Poems →</div>
+        </div>
+      </a>
     </div>
   </section>
 
@@ -763,27 +1118,22 @@
   <section id="contact">
     <span class="section-label reveal">Reach Out</span>
     <h2 class="section-title reveal">Contact</h2>
-
     <div class="contact-grid">
-
       <a href="mailto:rahman.sara1729@gmail.com" class="contact-item reveal">
         <div class="contact-item-icon">✉️</div>
         <div class="contact-item-label">Email</div>
         <div class="contact-item-value">rahman.sara1729@gmail.com</div>
       </a>
-
       <a href="https://www.linkedin.com/in/roronoa-sara" target="_blank" class="contact-item reveal">
         <div class="contact-item-icon">💼</div>
         <div class="contact-item-label">LinkedIn</div>
         <div class="contact-item-value">roronoa-sara</div>
       </a>
-
       <a href="https://github.com/sararahman1729" target="_blank" class="contact-item reveal">
         <div class="contact-item-icon">⚙️</div>
         <div class="contact-item-label">GitHub</div>
         <div class="contact-item-value">sararahman1729</div>
       </a>
-
     </div>
   </section>
 
@@ -793,7 +1143,7 @@
     <span class="footer-copy">© 2025 Sara Rahman</span>
   </footer>
 
-</div><!-- /page -->
+</div>
 
 <script>
   /* ── Starfield ─────────────────────────── */
@@ -802,40 +1152,24 @@
     const ctx = canvas.getContext('2d');
     let stars = [];
     const N = 200;
-
-    function resize() {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     function init() {
       stars = [];
       for (let i = 0; i < N; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 1.2 + 0.2,
-          a: Math.random(),
-          speed: Math.random() * 0.003 + 0.001,
-          phase: Math.random() * Math.PI * 2,
-        });
+        stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+          r: Math.random()*1.2+0.2, a: Math.random(), speed: Math.random()*0.003+0.001, phase: Math.random()*Math.PI*2 });
       }
     }
-
     function draw(t) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0,0,canvas.width,canvas.height);
       stars.forEach(s => {
-        const alpha = 0.3 + 0.5 * Math.sin(t * s.speed + s.phase);
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`;
-        ctx.fill();
+        const alpha = 0.3+0.5*Math.sin(t*s.speed+s.phase);
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(2)})`; ctx.fill();
       });
       requestAnimationFrame(draw);
     }
-
-    resize();
-    init();
+    resize(); init();
     window.addEventListener('resize', () => { resize(); init(); });
     requestAnimationFrame(draw);
   })();
@@ -849,8 +1183,19 @@
       }
     });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Extracurricular Tabs ──────────────── */
+  function switchTab(e, id) {
+    document.querySelectorAll('.extra-tab').forEach(t => t.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.querySelectorAll('.extra-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-'+id).classList.add('active');
+    document.querySelectorAll('#panel-'+id+' .reveal').forEach(el => {
+      el.classList.remove('visible');
+      setTimeout(() => el.classList.add('visible'), 80);
+    });
+  }
 </script>
 
 </body>

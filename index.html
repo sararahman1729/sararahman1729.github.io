@@ -24,7 +24,10 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+
+    /* FIX: Always show scrollbar so switching tabs doesn't cause width shift */
+    html { scroll-behavior: smooth; font-size: 16px; overflow-y: scroll; }
+
     body {
       background: var(--bg);
       color: var(--text);
@@ -163,7 +166,6 @@
     .research-title { font-family: var(--sans); font-weight: 500; font-size: 1rem; color: var(--white); margin-bottom: 8px; }
     .research-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.65; }
     .research-models { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-    /* GitHub link inside research cards */
     .research-github {
       margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
       display: flex; align-items: center; gap: 7px;
@@ -193,17 +195,9 @@
       border: 1px solid rgba(167,139,250,0.2); display: flex; align-items: center;
       justify-content: center; font-size: 1.3rem; flex-shrink: 0;
     }
-    .experience-role {
-      font-family: var(--sans); font-weight: 500; font-size: 1rem; color: var(--white); margin-bottom: 4px;
-    }
-    .experience-org {
-      font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em;
-      color: var(--accent); margin-bottom: 6px;
-    }
-    .experience-period {
-      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em;
-      color: var(--dim); margin-bottom: 10px;
-    }
+    .experience-role { font-family: var(--sans); font-weight: 500; font-size: 1rem; color: var(--white); margin-bottom: 4px; }
+    .experience-org { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 6px; }
+    .experience-period { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--dim); margin-bottom: 10px; }
     .experience-desc { font-size: 0.85rem; color: var(--dim); line-height: 1.65; }
     .experience-skills { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
     .exp-tag {
@@ -222,12 +216,15 @@
     .extra-tab.active, .extra-tab:hover {
       background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.4); color: var(--accent);
     }
-    .extra-panel { display: none; }
-    .extra-panel.active { display: flex; flex-direction: column; gap: 16px; }
+
+    /* FIX: Panels must be 100% wide and not cause layout shift */
+    .extra-panel { display: none; width: 100%; }
+    .extra-panel.active { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+
     .extra-item {
       display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
       padding: 22px 24px; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; transition: all 0.25s;
+      border-radius: 10px; transition: all 0.25s; width: 100%; min-width: 0;
     }
     .extra-item:hover { border-color: rgba(103,232,249,0.25); box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
     .extra-dot {
@@ -251,10 +248,7 @@
     .badge-competition{ background: rgba(74,222,128,0.1);  color: #4ade80;        border: 1px solid rgba(74,222,128,0.2); }
     .badge-volunteer  { background: rgba(244,114,182,0.1); color: #f472b6;        border: 1px solid rgba(244,114,182,0.2); }
 
-    /* Certification link inside activity items */
-    .extra-cert {
-      margin-top: 10px; display: inline-flex; align-items: center; gap: 6px;
-    }
+    .extra-cert { margin-top: 10px; display: inline-flex; align-items: center; gap: 6px; }
     .extra-cert a {
       font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase;
       color: var(--accent2); text-decoration: none; display: inline-flex; align-items: center;
@@ -305,9 +299,6 @@
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    /* GitHub icon SVG reusable path */
-    .gh-icon-path { d: path("M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"); }
 
     @media (max-width: 700px) {
       nav { padding: 16px 20px; }
@@ -560,14 +551,13 @@
 
     <div class="experience-list">
 
-      <!-- PLACEHOLDER EXPERIENCE ITEMS — replace with your real experience -->
       <div class="experience-item reveal">
-        <div class="experience-icon"></div>
+        <div class="experience-icon">💼</div>
         <div>
           <div class="experience-role">Undergraduate Teaching Assistant</div>
           <div class="experience-org">North South University — Department of CSE</div>
-          <div class="experience-period">Jan 2024 – Present</div>
-          <div class="experience-desc">Assisted faculty on ML and deep learning research projects, including dataset curation, model training, and results analysis. Contributed to the Bangla Speech Classification and Suicidal Ideation Prediction papers.</div>
+          <div class="experience-period">Jan 2024 – Sep 2025</div>
+          <div class="experience-desc">Conducted weekly hours of student consultation, providing academic support and guidance outside of class & assisted in exam administration, including proctoring midterms and fi nals.</div>
           <div class="experience-skills">
             <span class="exp-tag">Mathematics</span>
             <span class="exp-tag">Physics</span>
@@ -576,8 +566,6 @@
           </div>
         </div>
       </div>
-
-      
 
     </div>
   </section>
@@ -680,13 +668,13 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9fc46cde-318b-4a1f-96e1-c7ebfce527ff" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
+
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
           <div class="extra-item-title">ICPC Asia Dhaka Regional Contest <span class="extra-badge badge-competition">Competition</span></div>
           <div class="extra-item-meta">Dhaka · 2021</div>
-          <div class="extra-item-desc">Participated in the regional round of ‘ICPC Asia Dhaka Regional Contest 2021’ gaininghands-on experience with competitive programming platforms, showcasing problem solving skills</div>
+          <div class="extra-item-desc">Participated in the regional round of 'ICPC Asia Dhaka Regional Contest 2021' gaining hands-on experience with competitive programming platforms, showcasing problem solving skills.</div>
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:967687f6-8dd2-4479-9756-e1a97396d3a5" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
@@ -700,7 +688,7 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:5e9ea297-d0e1-4b5b-a39b-960caf59f3ce" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
+
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -710,7 +698,7 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d26a0b52-3f52-4951-885d-7d45f5f9545e" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
+
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -720,7 +708,7 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:3d0981cf-1e55-4607-bc25-410ab6afca0d" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
+
       <div class="extra-item reveal">
         <div class="extra-dot hackathon"></div>
         <div>
@@ -781,66 +769,6 @@
         </div>
       </div>
 
-       <div class="extra-item reveal">
-        <div class="extra-dot competition"></div>
-        <div>
-          <div class="extra-item-title">International Astronomy and Astrophysics Competition <span class="extra-badge badge-competition">Competition</span></div>
-          <div class="extra-item-meta">IAAC (Germany) · 2023</div>
-          <div class="extra-item-desc">Participated in the global IAAC challenge, solving advanced problems in astronomy, astrophysics, and physics.</div>
-          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
-        </div>
-      </div>
-
-      <div class="extra-item reveal">
-        <div class="extra-dot competition"></div>
-        <div>
-          <div class="extra-item-title">Wall Magazine Competition <span class="extra-badge badge-competition">Competition</span></div>
-          <div class="extra-item-meta">Holy Cross College · 2018</div>
-          <div class="extra-item-desc">Participated in the Wall Magazine Competition in Holy Cross College 16th Inter College Science Festival.</div>
-          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9fc46cde-318b-4a1f-96e1-c7ebfce527ff" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
-        </div>
-      </div>
-      
-      <div class="extra-item reveal">
-        <div class="extra-dot competition"></div>
-        <div>
-          <div class="extra-item-title">ICPC Asia Dhaka Regional Contest <span class="extra-badge badge-competition">Competition</span></div>
-          <div class="extra-item-meta">Dhaka · 2021</div>
-          <div class="extra-item-desc">Participated in the regional round of ‘ICPC Asia Dhaka Regional Contest 2021’ gaininghands-on experience with competitive programming platforms, showcasing problem solving skills</div>
-          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:967687f6-8dd2-4479-9756-e1a97396d3a5" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
-        </div>
-      </div>
-
-      <div class="extra-item reveal">
-        <div class="extra-dot competition"></div>
-        <div>
-          <div class="extra-item-title">International Youth Math Challenge <span class="extra-badge badge-competition">Competition</span></div>
-          <div class="extra-item-meta">IYMC (Germany) · 2025</div>
-          <div class="extra-item-desc">Participated in the global Math challenge, solving advanced problems in Mathematics.</div>
-          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:5e9ea297-d0e1-4b5b-a39b-960caf59f3ce" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
-        </div>
-      </div>
-      
-      <div class="extra-item reveal">
-        <div class="extra-dot competition"></div>
-        <div>
-          <div class="extra-item-title">Annual Art Competition <span class="extra-badge badge-competition">Competition</span></div>
-          <div class="extra-item-meta">Holy Cross College · 2017</div>
-          <div class="extra-item-desc">Participated in the Annual Art Competition of Holy Cross College.</div>
-          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d26a0b52-3f52-4951-885d-7d45f5f9545e" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
-        </div>
-      </div>
-      
-      <div class="extra-item reveal">
-        <div class="extra-dot competition"></div>
-        <div>
-          <div class="extra-item-title">International Computational Science Competition <span class="extra-badge badge-competition">Competition</span></div>
-          <div class="extra-item-meta">ICSC (Germany) · 2025</div>
-          <div class="extra-item-desc">Participated in an international computational science contest involving problem-solving, analytical reasoning, and scientific computation tasks.</div>
-          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:3d0981cf-1e55-4607-bc25-410ab6afca0d" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
-        </div>
-      </div>  
-      
       <div class="extra-item reveal">
         <div class="extra-dot seminar"></div>
         <div>
@@ -863,15 +791,12 @@
           <div class="extra-item-meta">North South University · 2025</div>
           <div class="extra-item-desc">Volunteered in Hack NSU season 5 as a moderator of R&D Floating Group of NSU ACM SC.</div>
           <div class="extra-cert">
-            <a href="ttps://acrobat.adobe.com/id/urn:aaid:sc:AP:76c475d9-518e-42a3-8948-8679ce9b3aa0" target="_blank">
+            <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:76c475d9-518e-42a3-8948-8679ce9b3aa0" target="_blank">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
               View Certificate
             </a>
           </div>
         </div>
-      </div>
-
-        
       </div>
 
     </div>
@@ -980,7 +905,6 @@
 
     <!-- COMPETITIONS -->
     <div class="extra-panel" id="panel-competitions">
-      
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -990,7 +914,6 @@
           <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -1000,17 +923,15 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:9fc46cde-318b-4a1f-96e1-c7ebfce527ff" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
           <div class="extra-item-title">ICPC Asia Dhaka Regional Contest <span class="extra-badge badge-competition">Competition</span></div>
           <div class="extra-item-meta">Dhaka · 2021</div>
-          <div class="extra-item-desc">Participated in the regional round of ‘ICPC Asia Dhaka Regional Contest 2021’ gaininghands-on experience with competitive programming platforms, showcasing problem solving skills</div>
+          <div class="extra-item-desc">Participated in the regional round of 'ICPC Asia Dhaka Regional Contest 2021' gaining hands-on experience with competitive programming platforms, showcasing problem solving skills.</div>
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:967687f6-8dd2-4479-9756-e1a97396d3a5" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -1020,7 +941,6 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:5e9ea297-d0e1-4b5b-a39b-960caf59f3ce" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -1030,7 +950,6 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:d26a0b52-3f52-4951-885d-7d45f5f9545e" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
       <div class="extra-item reveal">
         <div class="extra-dot competition"></div>
         <div>
@@ -1050,10 +969,9 @@
           <div class="extra-item-title">Hack NSU Season 5 — Event Moderator <span class="extra-badge badge-volunteer">Volunteer</span></div>
           <div class="extra-item-meta">NSU ACM Student Chapter · 2025</div>
           <div class="extra-item-desc">Volunteered as a moderator of the R&D Floating Group, coordinating participants and ensuring smooth event operations throughout the hackathon.</div>
-          <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
+          <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:76c475d9-518e-42a3-8948-8679ce9b3aa0" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
       <div class="extra-item reveal">
         <div class="extra-dot volunteer"></div>
         <div>
@@ -1063,7 +981,6 @@
           <div class="extra-cert"><a href="#" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-
       <div class="extra-item reveal">
         <div class="extra-dot volunteer"></div>
         <div>
@@ -1073,17 +990,15 @@
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:e1708d52-f3a3-40c9-868d-3bf33c18be96" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-
       <div class="extra-item reveal">
         <div class="extra-dot volunteer"></div>
         <div>
-          <div class="extra-item-title">Holy Cross College Admission Test<span class="extra-badge badge-volunteer">Volunteer</span></div>
+          <div class="extra-item-title">Holy Cross College Admission Test <span class="extra-badge badge-volunteer">Volunteer</span></div>
           <div class="extra-item-meta">Holy Cross College · 2018</div>
-          <div class="extra-item-desc">Had actively participated in the decorations for stages, entrances, and event boards at college farewell, orientation, and other cultural programs.</div>
+          <div class="extra-item-desc">Volunteered during the Holy Cross College Admission Test process, assisting with coordination and logistics.</div>
           <div class="extra-cert"><a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:e1708d52-f3a3-40c9-868d-3bf33c18be96" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path d="M12 15l-2 5-5-2 2-5"/><path d="M12 15l2 5 5-2-2-5"/><path d="M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>View Certificate</a></div>
         </div>
       </div>
-      
     </div>
 
   </section>
